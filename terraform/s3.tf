@@ -1,14 +1,7 @@
 # Create S3 Bucket
-resource "aws_s3_bucket" "website" {
+data "aws_s3_bucket" "website" {
   bucket = var.bucket_name
-
-  tags = {
-    Name        = "DevOps Static Website"
-    Environment = "Demo"
-    Project     = "GitHub-Actions-Terraform-AWS"
-  }
 }
-
 # Enable Static Website Hosting
 resource "aws_s3_bucket_website_configuration" "website" {
   bucket = aws_s3_bucket.website.id
