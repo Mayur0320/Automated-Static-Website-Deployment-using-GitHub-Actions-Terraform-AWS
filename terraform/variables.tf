@@ -9,9 +9,7 @@ variable "aws_region" {
 }
 
 variable "bucket_name" {
-
-  description = "Unique Bucket Name"
-
-  type = string
-
+  description = "Unique S3 Bucket Name"
+  type        = string
+  default     = "mayur-andhale-devops-website-20260717"
 }
