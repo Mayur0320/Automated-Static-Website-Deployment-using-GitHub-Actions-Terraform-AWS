@@ -1,5 +1,5 @@
 output "bucket_name" {
-  value = aws_s3_bucket.website.bucket
+  value = data.aws_s3_bucket.website.bucket
 }
 
 output "website_url" {
@@ -7,5 +7,5 @@ output "website_url" {
 }
 
 output "bucket_arn" {
-  value = aws_s3_bucket.website.arn
+  value = data.aws_s3_bucket.website.arn
 }

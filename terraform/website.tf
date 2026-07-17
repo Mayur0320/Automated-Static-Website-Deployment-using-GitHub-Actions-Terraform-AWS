@@ -1,7 +1,7 @@
 # Upload index.html
 resource "aws_s3_object" "index" {
 
-  bucket = aws_s3_bucket.website.id
+  bucket = data.aws_s3_bucket.website.id
 
   key = "index.html"
 
@@ -15,7 +15,7 @@ resource "aws_s3_object" "index" {
 # Upload style.css
 resource "aws_s3_object" "style" {
 
-  bucket = aws_s3_bucket.website.id
+  bucket = data.aws_s3_bucket.website.id
 
   key = "style.css"
 
@@ -29,7 +29,7 @@ resource "aws_s3_object" "style" {
 # Upload script.js
 resource "aws_s3_object" "script" {
 
-  bucket = aws_s3_bucket.website.id
+  bucket = data.aws_s3_bucket.website.id
 
   key = "script.js"
 
