@@ -1,10 +1,11 @@
-# Create S3 Bucket
+# Use Existing S3 Bucket
 data "aws_s3_bucket" "website" {
   bucket = var.bucket_name
 }
+
 # Enable Static Website Hosting
 resource "aws_s3_bucket_website_configuration" "website" {
-  bucket = aws_s3_bucket.website.id
+  bucket = data.aws_s3_bucket.website.id
 
   index_document {
     suffix = "index.html"
@@ -15,9 +16,9 @@ resource "aws_s3_bucket_website_configuration" "website" {
   }
 }
 
-# Disable Block Public Access
+# Public Access Block
 resource "aws_s3_bucket_public_access_block" "website" {
-  bucket = aws_s3_bucket.website.id
+  bucket = data.aws_s3_bucket.website.id
 
   block_public_acls       = false
   block_public_policy     = false
@@ -27,7 +28,7 @@ resource "aws_s3_bucket_public_access_block" "website" {
 
 # Bucket Policy
 resource "aws_s3_bucket_policy" "website" {
-  bucket = aws_s3_bucket.website.id
+  bucket = data.aws_s3_bucket.website.id
 
   depends_on = [
     aws_s3_bucket_public_access_block.website
@@ -47,7 +48,7 @@ resource "aws_s3_bucket_policy" "website" {
         ]
 
         Resource = [
-          "${aws_s3_bucket.website.arn}/*"
+          "${data.aws_s3_bucket.website.arn}/*"
         ]
       }
     ]
